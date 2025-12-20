@@ -51,7 +51,7 @@ export function Hero() {
                         {/* Optional Secondary Link/Info */}
                         <div className="flex items-center gap-2 text-gray-400 text-sm uppercase tracking-widest">
                             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                            Consultoria On-line Disponível
+                            Faça uma consultoria online gratuita
                         </div>
                     </div>
                 </motion.div>

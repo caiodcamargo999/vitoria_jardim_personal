@@ -6,7 +6,7 @@ export function Footer() {
                     © {new Date().getFullYear()} Vitória Jardim. Todos os direitos reservados.
                 </p>
                 <p className="text-xs text-muted-foreground/50 mt-2">
-                    Design by Agentic AI
+                    Design by Rarity Agency
                 </p>
             </div>
         </footer>
