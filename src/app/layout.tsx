@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit, Orbitron } from "next/font/google";
+import { Outfit, Orbitron, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
@@ -12,6 +12,12 @@ const outfit = Outfit({
 const orbitron = Orbitron({
   subsets: ["latin"],
   variable: "--font-orbitron",
+  weight: ["400", "500", "600", "700", "800", "900"],
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
   weight: ["400", "500", "600", "700", "800", "900"],
 });
 
@@ -28,10 +34,12 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <body
+        suppressHydrationWarning
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
           outfit.variable,
-          orbitron.variable
+          orbitron.variable,
+          playfair.variable
         )}
       >
         {children}

@@ -21,7 +21,7 @@ export function Consulting() {
                     >
                         <div className="relative aspect-video lg:aspect-square rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
                             <Image
-                                src="/running_aesthetic.png"
+                                src="/vitoria_futevolei_2.jpg"
                                 alt="Consultoria Online Vitória Jardim"
                                 fill
                                 className="object-cover"

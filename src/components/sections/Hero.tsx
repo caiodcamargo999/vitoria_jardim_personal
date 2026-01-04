@@ -38,8 +38,7 @@ export function Hero() {
                     </h1>
 
                     <p className="text-lg md:text-xl text-gray-300 font-light max-w-3xl mx-auto leading-relaxed drop-shadow-md text-balance">
-                        Você treina, se esforça, mas sente que estagnou? Chegou a hora de parar de fazer "apenas exercícios" e começar a treinar com <strong>intencionalidade clínica</strong>.
-                        Uma metodologia validada por anos de esporte de alto rendimento, agora ao seu alcance.
+                        Chegou a hora de começar a treinar com intencionalidade clínica. Uma metodologia validada por anos de esporte de alto rendimento, agora ao seu alcance.
                     </p>
 
                     <div className="pt-8 flex flex-col sm:flex-row items-center justify-center gap-6">

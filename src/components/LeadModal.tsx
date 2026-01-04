@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"; // Pode ser usado como fallback ou se children for passado
 import {
     Dialog,
     DialogContent,
@@ -12,8 +12,9 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ArrowRight, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ArrowUpRightIcon } from "lucide-react";
+import { CraftButton, CraftButtonLabel, CraftButtonIcon } from "@/components/ui/craft-button";
 
 interface LeadModalProps {
     children?: React.ReactNode;
@@ -53,24 +54,17 @@ export function LeadModal({
         e.preventDefault();
         setLoading(true);
 
-        // Format phone: remove non-numeric
         const cleanPhone = phone.replace(/\D/g, "");
-
-        // Construct message
         const message = `Olá, meu nome é ${name}. Gostaria de saber mais sobre os treinamentos personalizados.`;
         const encodedMessage = encodeURIComponent(message);
-
-        // WhatsApp URL
         const whatsappUrl = `https://wa.me/5551991229234?text=${encodedMessage}`;
 
-        // Send to Trello (Fire and Forget)
         fetch("/api/leads", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ name, phone }),
         }).catch((err) => console.error("Failed to capture lead:", err));
 
-        // Simulate small delay for UX then redirect
         setTimeout(() => {
             window.open(whatsappUrl, "_blank");
             setLoading(false);
@@ -82,13 +76,12 @@ export function LeadModal({
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
                 {children ? children : (
-                    <Button
-                        variant={variant}
-                        size={size}
-                        className={cn("font-bold text-lg shadow-lg hover:shadow-cyan-500/20 transition-all duration-300", className)}
-                    >
-                        {triggerText}
-                    </Button>
+                    <CraftButton className={cn("bg-primary text-primary-foreground hover:bg-primary/90", className)}>
+                        <CraftButtonLabel className="text-sm md:text-base font-bold tracking-widest">{triggerText}</CraftButtonLabel>
+                        <CraftButtonIcon>
+                            <ArrowUpRightIcon className="w-4 h-4 transition-transform duration-500 group-hover:rotate-45" />
+                        </CraftButtonIcon>
+                    </CraftButton>
                 )}
             </DialogTrigger>
             <DialogContent className="w-[90%] md:w-full sm:max-w-[425px] bg-[#0A0E17]/95 border-primary/20 backdrop-blur-xl shadow-2xl shadow-primary/10 rounded-2xl p-0 overflow-hidden ring-1 ring-white/10">
@@ -137,19 +130,22 @@ export function LeadModal({
                             </div>
                         </div>
 
-                        <Button
+                        <CraftButton
                             type="submit"
-                            className="w-full bg-gradient-to-r from-primary to-cyan-500 hover:from-primary/90 hover:to-cyan-400 text-white font-bold text-base md:text-lg h-12 md:h-14 rounded-xl shadow-lg shadow-primary/25 hover:shadow-cyan-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 mt-2 uppercase tracking-wide"
+                            className="w-full bg-gradient-to-r from-primary to-pink-500 hover:from-primary/90 hover:to-pink-400 text-primary-foreground font-bold h-12 md:h-14 rounded-xl shadow-lg shadow-primary/25 hover:shadow-pink-500/40 mt-2"
                             disabled={loading}
                         >
                             {loading ? (
                                 <span className="animate-pulse">Redirecionando...</span>
                             ) : (
-                                <span className="flex items-center justify-center gap-2">
-                                    Falar agora no WhatsApp <WhatsAppIcon className="w-5 h-5 md:w-6 md:h-6 fill-white" />
-                                </span>
+                                <>
+                                    <CraftButtonLabel className="text-base md:text-lg tracking-wide">Falar no WhatsApp</CraftButtonLabel>
+                                    <CraftButtonIcon>
+                                        <WhatsAppIcon className="w-5 h-5 md:w-6 md:h-6 fill-current" />
+                                    </CraftButtonIcon>
+                                </>
                             )}
-                        </Button>
+                        </CraftButton>
 
                         <p className="text-[10px] md:text-xs text-center text-gray-600 mt-3 md:mt-4">
                             * Seus dados estão seguros e não enviaremos spam.
